@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Virtuoso SKILL API Knowledge Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #0f0f1a; overflow: hidden; }
+        svg { width: 100vw; height: 100vh; }
+        .node { cursor: pointer; transition: all 0.3s; }
+        .node circle { stroke: #fff; stroke-width: 2px; transition: all 0.3s; }
+        .node:hover circle { stroke-width: 4px; filter: drop-shadow(0 0 8px currentColor); }
+        .node text { fill: #fff; font-size: 11px; font-weight: 500; pointer-events: none; }
+        .link { stroke-opacity: 0.5; transition: all 0.3s; }
+        .link:hover { stroke-opacity: 1; stroke-width: 3px; }
+        .legend { position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.85); padding: 20px; border-radius: 12px; max-width: 280px; }
+        .legend h2 { color: #fff; margin: 0 0 15px 0; font-size: 18px; }
+        .legend h3 { color: #aaa; margin: 15px 0 10px 0; font-size: 14px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .legend-item { color: #ddd; margin: 8px 0; font-size: 12px; display: flex; align-items: center; }
+        .legend-color { display: inline-block; width: 16px; height: 16px; border-radius: 50%; margin-right: 10px; flex-shrink: 0; }
+        .tooltip { position: absolute; background: rgba(0,0,0,0.95); color: #fff; padding: 15px; border-radius: 8px; font-size: 12px; pointer-events: none; max-width: 300px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .tooltip h4 { margin: 0 0 8px 0; color: #4CAF50; }
+        .tooltip p { margin: 0; line-height: 1.5; }
+        .stats { position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.85); padding: 15px 20px; border-radius: 12px; color: #fff; font-size: 13px; }
+        .stats strong { color: #4CAF50; }
+    </style>
+</head>
+<body>
+    <div class="legend">
+        <h2>🖥️ Virtuoso SKILL API</h2>
+        <h3>节点类型</h3>
+        <div class="legend-item"><span class="legend-color" style="background: #4CAF50;"></span>仿真环境 (ADE/OCEAN)</div>
+        <div class="legend-item"><span class="legend-color" style="background: #2196F3;"></span>设计工具 (Layout/Sch)</div>
+        <div class="legend-item"><span class="legend-color" style="background: #FF9800;"></span>核心语言 (Core/DFII)</div>
+        <div class="legend-item"><span class="legend-color" style="background: #9C27B0;"></span>辅助工具 (UI/Verify)</div>
+        <div class="legend-item"><span class="legend-color" style="background: #607D8B;"></span>其他模块</div>
+        <h3>关系类型</h3>
+        <div class="legend-item">━ 基础关系</div>
+        <div class="legend-item">━ 演进关系</div>
+        <div class="legend-item">━ 相关关系</div>
+    </div>
+    
+    <div class="stats">
+        <strong>8169</strong> 函数 · <strong>27</strong> 模块
+    </div>
+    
+    <svg id="graph"></svg>
+    
+    <div class="tooltip" id="tooltip" style="display: none;"></div>
+    
+    <script>
+        const data = {"nodes": [{"id": "module_ADE-L", "label": "ADE L", "type": "module", "function_count": 721, "description": "\u6a21\u62df\u8bbe\u8ba1\u73af\u5883 L", "source_file": "SKILL"}, {"id": "module_Translators", "label": "Translators", "type": "module", "function_count": 72, "description": "", "source_file": "SKILL"}, {"id": "module_OCEAN", "label": "OCEAN", "type": "module", "function_count": 318, "description": "OCEAN \u811a\u672c\u8bed\u8a00", "source_file": "SKILL"}, {"id": "module_Parasitic_Aware_Design", "label": "Parasitic_Aware_Design", "type": "module", "function_count": 33, "description": "", "source_file": "SKILL"}, {"id": "module_ADE_XL", "label": "ADE XL", "type": "module", "function_count": 260, "description": "ADE XL \u9ad8\u7ea7\u4eff\u771f", "source_file": "SKILL"}, {"id": "module_DRACULA_GUI_SKILL", "label": "DRACULA_GUI_SKILL", "type": "module", "function_count": 1, "description": "", "source_file": "SKILL"}, {"id": "module_HDL_Import_and_Netlist_Conversion", "label": "HDL_Import_and_Netlist_Conversion", "type": "module", "function_count": 9, "description": "", "source_file": "SKILL"}, {"id": "module_ViVA_SKILL", "label": "ViVA", "type": "module", "function_count": 321, "description": "\u6ce2\u5f62\u67e5\u770b\u5668", "source_file": "SKILL"}, {"id": "module_Analog_Expression", "label": "Analog_Expression", "type": "module", "function_count": 28, "description": "", "source_file": "SKILL"}, {"id": "module_Relative_Object_Design", "label": "Relative_Object_Design", "type": "module", "function_count": 47, "description": "", "source_file": "SKILL"}, {"id": "module_Pcells", "label": "Pcells", "type": "module", "function_count": 141, "description": "\u53c2\u6570\u5316\u5355\u5143", "source_file": "SKILL"}, {"id": "module_Tech_File", "label": "Tech File", "type": "module", "function_count": 305, "description": "\u6280\u672f\u6587\u4ef6", "source_file": "SKILL"}, {"id": "module_Core_SKILL", "label": "Core SKILL", "type": "module", "function_count": 683, "description": "SKILL \u8bed\u8a00\u6838\u5fc3\u51fd\u6570", "source_file": "SKILL"}, {"id": "module_Netlisting_and_Simulation", "label": "Netlisting", "type": "module", "function_count": 212, "description": "\u7f51\u8868\u4e0e\u4eff\u771f", "source_file": "SKILL"}, {"id": "module_EDIF200", "label": "EDIF200", "type": "module", "function_count": 20, "description": "", "source_file": "SKILL"}, {"id": "module_ADE_Assembler", "label": "ADE Assembler", "type": "module", "function_count": 51, "description": "ADE Maestro API", "source_file": "SKILL"}, {"id": "module_Custom_Layout", "label": "Custom Layout", "type": "module", "function_count": 1311, "description": "\u7248\u56fe\u81ea\u52a8\u5316", "source_file": "SKILL"}, {"id": "module_Power_IR_EM", "label": "Power_IR_EM", "type": "module", "function_count": 24, "description": "", "source_file": "SKILL"}, {"id": "module_AMS_Environment", "label": "AMS_Environment", "type": "module", "function_count": 38, "description": "", "source_file": "SKILL"}, {"id": "module_User_Interface", "label": "User Interface", "type": "module", "function_count": 742, "description": "UI \u5f00\u53d1", "source_file": "SKILL"}, {"id": "module_VIPVS-GUI", "label": "VIPVS-GUI", "type": "module", "function_count": 1, "description": "", "source_file": "SKILL"}, {"id": "module_DFII_SKILL", "label": "DFII SKILL", "type": "module", "function_count": 1807, "description": "\u6570\u636e\u5e93\u63a5\u53e3", "source_file": "SKILL"}, {"id": "module_Custom_Constraints", "label": "Constraints", "type": "module", "function_count": 430, "description": "\u8bbe\u8ba1\u7ea6\u675f", "source_file": "SKILL"}, {"id": "module_OCEAN_XL", "label": "OCEAN XL", "type": "module", "function_count": 112, "description": "OCEAN XL", "source_file": "SKILL"}, {"id": "module_Voltus-Fi-XL", "label": "Voltus-Fi-XL", "type": "module", "function_count": 18, "description": "", "source_file": "SKILL"}, {"id": "module_Schematics", "label": "Schematics", "type": "module", "function_count": 351, "description": "\u539f\u7406\u56fe\u7f16\u8f91", "source_file": "SKILL"}, {"id": "module_ADE_Verifier", "label": "ADE Verifier", "type": "module", "function_count": 113, "description": "\u9a8c\u8bc1\u5de5\u5177", "source_file": "SKILL"}, {"id": "func_append", "label": "append", "type": "function", "description": "\u8fde\u63a5\u4e24\u4e2a\u5217\u8868", "module": "Core_SKILL", "source_file": "SKILL"}, {"id": "func_car", "label": "car", "type": "function", "description": "\u8fd4\u56de\u5217\u8868\u7b2c\u4e00\u4e2a\u5143\u7d20", "module": "Core_SKILL", "source_file": "SKILL"}, {"id": "func_cdr", "label": "cdr", "type": "function", "description": "\u8fd4\u56de\u5217\u8868\u5c3e\u90e8", "module": "Core_SKILL", "source_file": "SKILL"}, {"id": "func_cons", "label": "cons", "type": "function", "description": "\u6dfb\u52a0\u5143\u7d20\u5230\u5217\u8868\u5f00\u5934", "module": "Core_SKILL", "source_file": "SKILL"}, {"id": "func_list", "label": "list", "type": "function", "description": "\u521b\u5efa\u5217\u8868", "module": "Core_SKILL", "source_file": "SKILL"}, {"id": "func_maeAddOutput", "label": "maeAddOutput", "type": "function", "description": "\u6dfb\u52a0\u8f93\u51fa", "module": "ADE_Assembler", "source_file": "SKILL"}, {"id": "func_maeCloseSession", "label": "maeCloseSession", "type": "function", "description": "\u5173\u95ed\u4f1a\u8bdd", "module": "ADE_Assembler", "source_file": "SKILL"}, {"id": "func_maeGetSetup", "label": "maeGetSetup", "type": "function", "description": "\u83b7\u53d6\u8bbe\u7f6e", "module": "ADE_Assembler", "source_file": "SKILL"}, {"id": "func_maeSetVar", "label": "maeSetVar", "type": "function", "description": "\u8bbe\u7f6e\u53d8\u91cf", "module": "ADE_Assembler", "source_file": "SKILL"}, {"id": "func_maeRunSimulation", "label": "maeRunSimulation", "type": "function", "description": "\u8fd0\u884c\u4eff\u771f", "module": "ADE_Assembler", "source_file": "SKILL"}, {"id": "func_axlAddOutput", "label": "axlAddOutput", "type": "function", "description": "\u6dfb\u52a0\u8f93\u51fa", "module": "ADE_XL", "source_file": "SKILL"}, {"id": "func_axlRunSession", "label": "axlRunSession", "type": "function", "description": "\u8fd0\u884c\u4f1a\u8bdd", "module": "ADE_XL", "source_file": "SKILL"}, {"id": "func_ocnAddOutput", "label": "ocnAddOutput", "type": "function", "description": "\u6dfb\u52a0\u8f93\u51fa", "module": "OCEAN", "source_file": "SKILL"}, {"id": "func_ocnRunSimulation", "label": "ocnRunSimulation", "type": "function", "description": "\u8fd0\u884c\u4eff\u771f", "module": "OCEAN", "source_file": "SKILL"}, {"id": "func_openResults", "label": "openResults", "type": "function", "description": "\u6253\u5f00\u7ed3\u679c", "module": "OCEAN", "source_file": "SKILL"}, {"id": "func_dbCreateInst", "label": "dbCreateInst", "type": "function", "description": "\u521b\u5efa\u5b9e\u4f8b", "module": "Custom_Layout", "source_file": "SKILL"}, {"id": "func_dbCreateRect", "label": "dbCreateRect", "type": "function", "description": "\u521b\u5efa\u77e9\u5f62", "module": "Custom_Layout", "source_file": "SKILL"}, {"id": "func_dbCreatePath", "label": "dbCreatePath", "type": "function", "description": "\u521b\u5efa\u8def\u5f84", "module": "Custom_Layout", "source_file": "SKILL"}, {"id": "func_dbCreateLabel", "label": "dbCreateLabel", "type": "function", "description": "\u521b\u5efa\u6807\u7b7e", "module": "Custom_Layout", "source_file": "SKILL"}, {"id": "func_leCreateLayer", "label": "leCreateLayer", "type": "function", "description": "\u521b\u5efa\u5c42", "module": "Custom_Layout", "source_file": "SKILL"}, {"id": "func_schCreateInst", "label": "schCreateInst", "type": "function", "description": "\u521b\u5efa\u5b9e\u4f8b", "module": "Schematics", "source_file": "SKILL"}, {"id": "func_schCreateWire", "label": "schCreateWire", "type": "function", "description": "\u521b\u5efa\u8fde\u7ebf", "module": "Schematics", "source_file": "SKILL"}, {"id": "func_schCreatePin", "label": "schCreatePin", "type": "function", "description": "\u521b\u5efa\u5f15\u811a", "module": "Schematics", "source_file": "SKILL"}, {"id": "func_pcDefinePCell", "label": "pcDefinePCell", "type": "function", "description": "\u5b9a\u4e49\u53c2\u6570\u5316\u5355\u5143", "module": "Pcells", "source_file": "SKILL"}, {"id": "func_pcCellView", "label": "pcCellView", "type": "function", "description": "PCell \u89c6\u56fe", "module": "Pcells", "source_file": "SKILL"}, {"id": "func_hiCreateApp", "label": "hiCreateApp", "type": "function", "description": "\u521b\u5efa\u5e94\u7528", "module": "User_Interface", "source_file": "SKILL"}, {"id": "func_hiCreateMenuItem", "label": "hiCreateMenuItem", "type": "function", "description": "\u521b\u5efa\u83dc\u5355\u9879", "module": "User_Interface", "source_file": "SKILL"}, {"id": "func_dbOpenCellViewByType", "label": "dbOpenCellViewByType", "type": "function", "description": "\u6253\u5f00\u5355\u5143\u89c6\u56fe", "module": "DFII_SKILL", "source_file": "SKILL"}, {"id": "func_dbSave", "label": "dbSave", "type": "function", "description": "\u4fdd\u5b58\u6570\u636e\u5e93", "module": "DFII_SKILL", "source_file": "SKILL"}, {"id": "func_dbCreateCell", "label": "dbCreateCell", "type": "function", "description": "\u521b\u5efa\u5355\u5143", "module": "DFII_SKILL", "source_file": "SKILL"}], "edges": [{"source": "module_Core_SKILL", "target": "module_DFII_SKILL", "relation": "foundation", "description": "\u6570\u636e\u5e93\u64cd\u4f5c\u4f9d\u8d56\u6838\u5fc3\u8bed\u8a00", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Core_SKILL", "target": "module_Custom_Layout", "relation": "foundation", "description": "\u7248\u56fe\u81ea\u52a8\u5316\u4f9d\u8d56\u6838\u5fc3\u8bed\u8a00", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Core_SKILL", "target": "module_User_Interface", "relation": "foundation", "description": "UI\u5f00\u53d1\u4f9d\u8d56\u6838\u5fc3\u8bed\u8a00", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Core_SKILL", "target": "module_Schematics", "relation": "foundation", "description": "\u539f\u7406\u56fe\u4f9d\u8d56\u6838\u5fc3\u8bed\u8a00", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Core_SKILL", "target": "module_Pcells", "relation": "foundation", "description": "Pcell\u4f9d\u8d56\u6838\u5fc3\u8bed\u8a00", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE-L", "target": "module_ADE_Assembler", "relation": "evolution", "description": "ADE L \u6f14\u8fdb\u5230 Maestro", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE-L", "target": "module_ADE_XL", "relation": "evolution", "description": "ADE L \u6f14\u8fdb\u5230 XL", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE_XL", "target": "module_ADE_Assembler", "relation": "evolution", "description": "XL \u6f14\u8fdb\u5230 Maestro", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_OCEAN", "target": "module_OCEAN_XL", "relation": "evolution", "description": "OCEAN \u6f14\u8fdb\u5230 XL", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE_Assembler", "target": "module_OCEAN_XL", "relation": "related", "description": "Assembler \u652f\u6301 OCEAN XL", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Custom_Layout", "target": "module_Pcells", "relation": "related", "description": "\u7248\u56fe\u4e0ePcell\u7d27\u5bc6\u76f8\u5173", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Custom_Layout", "target": "module_Tech_File", "relation": "related", "description": "\u7248\u56fe\u4f9d\u8d56\u6280\u672f\u6587\u4ef6", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Schematics", "target": "module_Netlisting_and_Simulation", "relation": "related", "description": "\u539f\u7406\u56fe\u5230\u7f51\u8868", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE-L", "target": "module_OCEAN", "relation": "related", "description": "ADE L \u652f\u6301 OCEAN", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ViVA_SKILL", "target": "module_ADE-L", "relation": "related", "description": "\u6ce2\u5f62\u67e5\u770b\u5668\u4e0e\u4eff\u771f\u76f8\u5173", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Custom_Constraints", "target": "module_ADE_XL", "relation": "related", "description": "\u7ea6\u675f\u7528\u4e8e\u9ad8\u7ea7\u4eff\u771f", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_DFII_SKILL", "target": "module_Netlisting_and_Simulation", "relation": "related", "description": "\u6570\u636e\u5e93\u4e0e\u7f51\u8868", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Translators", "target": "module_Netlisting_and_Simulation", "relation": "related", "description": "\u683c\u5f0f\u8f6c\u6362", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Core_SKILL", "target": "func_append", "relation": "contains", "description": "Core_SKILL \u5305\u542b append", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Core_SKILL", "target": "func_car", "relation": "contains", "description": "Core_SKILL \u5305\u542b car", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Core_SKILL", "target": "func_cdr", "relation": "contains", "description": "Core_SKILL \u5305\u542b cdr", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Core_SKILL", "target": "func_cons", "relation": "contains", "description": "Core_SKILL \u5305\u542b cons", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Core_SKILL", "target": "func_list", "relation": "contains", "description": "Core_SKILL \u5305\u542b list", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE_Assembler", "target": "func_maeAddOutput", "relation": "contains", "description": "ADE_Assembler \u5305\u542b maeAddOutput", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE_Assembler", "target": "func_maeCloseSession", "relation": "contains", "description": "ADE_Assembler \u5305\u542b maeCloseSession", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE_Assembler", "target": "func_maeGetSetup", "relation": "contains", "description": "ADE_Assembler \u5305\u542b maeGetSetup", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE_Assembler", "target": "func_maeSetVar", "relation": "contains", "description": "ADE_Assembler \u5305\u542b maeSetVar", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE_Assembler", "target": "func_maeRunSimulation", "relation": "contains", "description": "ADE_Assembler \u5305\u542b maeRunSimulation", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE_XL", "target": "func_axlAddOutput", "relation": "contains", "description": "ADE_XL \u5305\u542b axlAddOutput", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_ADE_XL", "target": "func_axlRunSession", "relation": "contains", "description": "ADE_XL \u5305\u542b axlRunSession", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_OCEAN", "target": "func_ocnAddOutput", "relation": "contains", "description": "OCEAN \u5305\u542b ocnAddOutput", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_OCEAN", "target": "func_ocnRunSimulation", "relation": "contains", "description": "OCEAN \u5305\u542b ocnRunSimulation", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_OCEAN", "target": "func_openResults", "relation": "contains", "description": "OCEAN \u5305\u542b openResults", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Custom_Layout", "target": "func_dbCreateInst", "relation": "contains", "description": "Custom_Layout \u5305\u542b dbCreateInst", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Custom_Layout", "target": "func_dbCreateRect", "relation": "contains", "description": "Custom_Layout \u5305\u542b dbCreateRect", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Custom_Layout", "target": "func_dbCreatePath", "relation": "contains", "description": "Custom_Layout \u5305\u542b dbCreatePath", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Custom_Layout", "target": "func_dbCreateLabel", "relation": "contains", "description": "Custom_Layout \u5305\u542b dbCreateLabel", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Custom_Layout", "target": "func_leCreateLayer", "relation": "contains", "description": "Custom_Layout \u5305\u542b leCreateLayer", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Schematics", "target": "func_schCreateInst", "relation": "contains", "description": "Schematics \u5305\u542b schCreateInst", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Schematics", "target": "func_schCreateWire", "relation": "contains", "description": "Schematics \u5305\u542b schCreateWire", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Schematics", "target": "func_schCreatePin", "relation": "contains", "description": "Schematics \u5305\u542b schCreatePin", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Pcells", "target": "func_pcDefinePCell", "relation": "contains", "description": "Pcells \u5305\u542b pcDefinePCell", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_Pcells", "target": "func_pcCellView", "relation": "contains", "description": "Pcells \u5305\u542b pcCellView", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_User_Interface", "target": "func_hiCreateApp", "relation": "contains", "description": "User_Interface \u5305\u542b hiCreateApp", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_User_Interface", "target": "func_hiCreateMenuItem", "relation": "contains", "description": "User_Interface \u5305\u542b hiCreateMenuItem", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_DFII_SKILL", "target": "func_dbOpenCellViewByType", "relation": "contains", "description": "DFII_SKILL \u5305\u542b dbOpenCellViewByType", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_DFII_SKILL", "target": "func_dbSave", "relation": "contains", "description": "DFII_SKILL \u5305\u542b dbSave", "confidence": "EXTRACTED", "confidence_score": 1.0}, {"source": "module_DFII_SKILL", "target": "func_dbCreateCell", "relation": "contains", "description": "DFII_SKILL \u5305\u542b dbCreateCell", "confidence": "EXTRACTED", "confidence_score": 1.0}], "hyperedges": [{"id": "simulation_suite", "label": "\u4eff\u771f\u5de5\u5177\u5957\u4ef6", "nodes": ["module_ADE-L", "module_ADE_XL", "module_ADE_Assembler", "module_OCEAN", "module_OCEAN_XL"], "relation": "form", "description": "\u5b8c\u6574\u7684\u4eff\u771f\u73af\u5883", "confidence": "EXTRACTED"}, {"id": "design_entry", "label": "\u8bbe\u8ba1\u8f93\u5165\u5de5\u5177", "nodes": ["module_Schematics", "module_Custom_Layout", "module_Pcells"], "relation": "form", "description": "\u539f\u7406\u56fe\u548c\u7248\u56fe\u8bbe\u8ba1", "confidence": "EXTRACTED"}, {"id": "core_tools", "label": "\u6838\u5fc3\u5de5\u5177", "nodes": ["module_Core_SKILL", "module_DFII_SKILL", "module_User_Interface"], "relation": "form", "description": "SKILL \u6838\u5fc3\u529f\u80fd", "confidence": "EXTRACTED"}], "stats": {"total_functions": 8169, "total_modules": 27, "key_functions": 30}};
+        
+        function getColor(node) {
+            if (node.type === 'function') return '#fff';
+            const id = node.id.replace('module_', '').toLowerCase();
+            if (id.includes('ade') || id.includes('ocean')) return '#4CAF50';
+            if (id.includes('layout') || id.includes('schematic') || id.includes('pcell')) return '#2196F3';
+            if (id.includes('core') || id.includes('dfii')) return '#FF9800';
+            if (id.includes('ui') || id.includes('verify') || id.includes('viva')) return '#9C27B0';
+            return '#607D8B';
+        }
+        
+        function getSize(node) {
+            if (node.type === 'function') return 8;
+            const count = node.function_count || 100;
+            return Math.max(15, Math.min(40, Math.sqrt(count / 10) * 8));
+        }
+        
+        const svg = d3.select("svg");
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
+        const simulation = d3.forceSimulation(data.nodes)
+            .force("link", d3.forceLink(data.edges).id(d => d.id).distance(120))
+            .force("charge", d3.forceManyBody().strength(-600))
+            .force("center", d3.forceCenter(width/2, height/2))
+            .force("collision", d3.forceCollide().radius(d => getSize(d) + 10));
+        
+        const defs = svg.append("defs");
+        data.edges.forEach((edge, i) => {
+            const color = edge.relation === 'foundation' ? '#4CAF50' : 
+                         edge.relation === 'evolution' ? '#FF9800' : '#2196F3';
+            defs.append("marker")
+                .attr("id", `arrow-${i}`)
+                .attr("viewBox", "0 -5 10 10")
+                .attr("refX", 25)
+                .attr("refY", 0)
+                .attr("markerWidth", 6)
+                .attr("markerHeight", 6)
+                .attr("orient", "auto")
+                .append("path")
+                .attr("d", "M0,-5L10,0L0,5")
+                .attr("fill", color);
+        });
+        
+        const link = svg.append("g")
+            .selectAll("line")
+            .data(data.edges)
+            .enter().append("line")
+            .attr("stroke", d => d.relation === 'foundation' ? '#4CAF50' : 
+                                   d.relation === 'evolution' ? '#FF9800' : '#2196F3')
+            .attr("stroke-width", 2)
+            .attr("marker-end", (d, i) => `url(#arrow-${i})`);
+        
+        const node = svg.append("g")
+            .selectAll("g")
+            .data(data.nodes)
+            .enter().append("g")
+            .attr("class", "node")
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+        
+        node.append("circle")
+            .attr("r", d => getSize(d))
+            .attr("fill", d => getColor(d));
+        
+        node.append("text")
+            .attr("dy", d => getSize(d) + 15)
+            .attr("text-anchor", "middle")
+            .text(d => d.label.length > 15 ? d.label.substring(0, 15) + '...' : d.label);
+        
+        const tooltip = d3.select("#tooltip");
+        
+        node.on("mouseover", function(event, d) {
+            tooltip.style("display", "block")
+                .html(`<h4>${d.label}</h4><p>${d.description || ''}</p>` +
+                      (d.function_count ? `<p><strong>${d.function_count}</strong> functions</p>` : ''));
+        })
+        .on("mousemove", function(event) {
+            tooltip.style("left", (event.pageX + 15) + "px")
+                .style("top", (event.pageY - 10) + "px");
+        })
+        .on("mouseout", function() {
+            tooltip.style("display", "none");
+        });
+        
+        simulation.on("tick", () => {
+            link.attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+            
+            node.attr("transform", d => `translate(${d.x},${d.y})`);
+        });
+        
+        function dragstarted(event) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            event.subject.fx = event.subject.x;
+            event.subject.fy = event.subject.y;
+        }
+        
+        function dragged(event) {
+            event.subject.fx = event.x;
+            event.subject.fy = event.y;
+        }
+        
+        function dragended(event) {
+            if (!event.active) simulation.alphaTarget(0);
+            event.subject.fx = null;
+            event.subject.fy = null;
+        }
+    </script>
+</body>
+</html>
