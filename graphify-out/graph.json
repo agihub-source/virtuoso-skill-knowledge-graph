@@ -1,0 +1,891 @@
+{
+  "nodes": [
+    {
+      "id": "module_ADE-L",
+      "label": "ADE L",
+      "type": "module",
+      "function_count": 721,
+      "description": "模拟设计环境 L",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Translators",
+      "label": "Translators",
+      "type": "module",
+      "function_count": 72,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_OCEAN",
+      "label": "OCEAN",
+      "type": "module",
+      "function_count": 318,
+      "description": "OCEAN 脚本语言",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Parasitic_Aware_Design",
+      "label": "Parasitic_Aware_Design",
+      "type": "module",
+      "function_count": 33,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_ADE_XL",
+      "label": "ADE XL",
+      "type": "module",
+      "function_count": 260,
+      "description": "ADE XL 高级仿真",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_DRACULA_GUI_SKILL",
+      "label": "DRACULA_GUI_SKILL",
+      "type": "module",
+      "function_count": 1,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_HDL_Import_and_Netlist_Conversion",
+      "label": "HDL_Import_and_Netlist_Conversion",
+      "type": "module",
+      "function_count": 9,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_ViVA_SKILL",
+      "label": "ViVA",
+      "type": "module",
+      "function_count": 321,
+      "description": "波形查看器",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Analog_Expression",
+      "label": "Analog_Expression",
+      "type": "module",
+      "function_count": 28,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Relative_Object_Design",
+      "label": "Relative_Object_Design",
+      "type": "module",
+      "function_count": 47,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Pcells",
+      "label": "Pcells",
+      "type": "module",
+      "function_count": 141,
+      "description": "参数化单元",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Tech_File",
+      "label": "Tech File",
+      "type": "module",
+      "function_count": 305,
+      "description": "技术文件",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Core_SKILL",
+      "label": "Core SKILL",
+      "type": "module",
+      "function_count": 683,
+      "description": "SKILL 语言核心函数",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Netlisting_and_Simulation",
+      "label": "Netlisting",
+      "type": "module",
+      "function_count": 212,
+      "description": "网表与仿真",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_EDIF200",
+      "label": "EDIF200",
+      "type": "module",
+      "function_count": 20,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_ADE_Assembler",
+      "label": "ADE Assembler",
+      "type": "module",
+      "function_count": 51,
+      "description": "ADE Maestro API",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Custom_Layout",
+      "label": "Custom Layout",
+      "type": "module",
+      "function_count": 1311,
+      "description": "版图自动化",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Power_IR_EM",
+      "label": "Power_IR_EM",
+      "type": "module",
+      "function_count": 24,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_AMS_Environment",
+      "label": "AMS_Environment",
+      "type": "module",
+      "function_count": 38,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_User_Interface",
+      "label": "User Interface",
+      "type": "module",
+      "function_count": 742,
+      "description": "UI 开发",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_VIPVS-GUI",
+      "label": "VIPVS-GUI",
+      "type": "module",
+      "function_count": 1,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_DFII_SKILL",
+      "label": "DFII SKILL",
+      "type": "module",
+      "function_count": 1807,
+      "description": "数据库接口",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Custom_Constraints",
+      "label": "Constraints",
+      "type": "module",
+      "function_count": 430,
+      "description": "设计约束",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_OCEAN_XL",
+      "label": "OCEAN XL",
+      "type": "module",
+      "function_count": 112,
+      "description": "OCEAN XL",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Voltus-Fi-XL",
+      "label": "Voltus-Fi-XL",
+      "type": "module",
+      "function_count": 18,
+      "description": "",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_Schematics",
+      "label": "Schematics",
+      "type": "module",
+      "function_count": 351,
+      "description": "原理图编辑",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "module_ADE_Verifier",
+      "label": "ADE Verifier",
+      "type": "module",
+      "function_count": 113,
+      "description": "验证工具",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_append",
+      "label": "append",
+      "type": "function",
+      "description": "连接两个列表",
+      "module": "Core_SKILL",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_car",
+      "label": "car",
+      "type": "function",
+      "description": "返回列表第一个元素",
+      "module": "Core_SKILL",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_cdr",
+      "label": "cdr",
+      "type": "function",
+      "description": "返回列表尾部",
+      "module": "Core_SKILL",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_cons",
+      "label": "cons",
+      "type": "function",
+      "description": "添加元素到列表开头",
+      "module": "Core_SKILL",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_list",
+      "label": "list",
+      "type": "function",
+      "description": "创建列表",
+      "module": "Core_SKILL",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_maeAddOutput",
+      "label": "maeAddOutput",
+      "type": "function",
+      "description": "添加输出",
+      "module": "ADE_Assembler",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_maeCloseSession",
+      "label": "maeCloseSession",
+      "type": "function",
+      "description": "关闭会话",
+      "module": "ADE_Assembler",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_maeGetSetup",
+      "label": "maeGetSetup",
+      "type": "function",
+      "description": "获取设置",
+      "module": "ADE_Assembler",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_maeSetVar",
+      "label": "maeSetVar",
+      "type": "function",
+      "description": "设置变量",
+      "module": "ADE_Assembler",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_maeRunSimulation",
+      "label": "maeRunSimulation",
+      "type": "function",
+      "description": "运行仿真",
+      "module": "ADE_Assembler",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_axlAddOutput",
+      "label": "axlAddOutput",
+      "type": "function",
+      "description": "添加输出",
+      "module": "ADE_XL",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_axlRunSession",
+      "label": "axlRunSession",
+      "type": "function",
+      "description": "运行会话",
+      "module": "ADE_XL",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_ocnAddOutput",
+      "label": "ocnAddOutput",
+      "type": "function",
+      "description": "添加输出",
+      "module": "OCEAN",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_ocnRunSimulation",
+      "label": "ocnRunSimulation",
+      "type": "function",
+      "description": "运行仿真",
+      "module": "OCEAN",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_openResults",
+      "label": "openResults",
+      "type": "function",
+      "description": "打开结果",
+      "module": "OCEAN",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_dbCreateInst",
+      "label": "dbCreateInst",
+      "type": "function",
+      "description": "创建实例",
+      "module": "Custom_Layout",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_dbCreateRect",
+      "label": "dbCreateRect",
+      "type": "function",
+      "description": "创建矩形",
+      "module": "Custom_Layout",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_dbCreatePath",
+      "label": "dbCreatePath",
+      "type": "function",
+      "description": "创建路径",
+      "module": "Custom_Layout",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_dbCreateLabel",
+      "label": "dbCreateLabel",
+      "type": "function",
+      "description": "创建标签",
+      "module": "Custom_Layout",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_leCreateLayer",
+      "label": "leCreateLayer",
+      "type": "function",
+      "description": "创建层",
+      "module": "Custom_Layout",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_schCreateInst",
+      "label": "schCreateInst",
+      "type": "function",
+      "description": "创建实例",
+      "module": "Schematics",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_schCreateWire",
+      "label": "schCreateWire",
+      "type": "function",
+      "description": "创建连线",
+      "module": "Schematics",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_schCreatePin",
+      "label": "schCreatePin",
+      "type": "function",
+      "description": "创建引脚",
+      "module": "Schematics",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_pcDefinePCell",
+      "label": "pcDefinePCell",
+      "type": "function",
+      "description": "定义参数化单元",
+      "module": "Pcells",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_pcCellView",
+      "label": "pcCellView",
+      "type": "function",
+      "description": "PCell 视图",
+      "module": "Pcells",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_hiCreateApp",
+      "label": "hiCreateApp",
+      "type": "function",
+      "description": "创建应用",
+      "module": "User_Interface",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_hiCreateMenuItem",
+      "label": "hiCreateMenuItem",
+      "type": "function",
+      "description": "创建菜单项",
+      "module": "User_Interface",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_dbOpenCellViewByType",
+      "label": "dbOpenCellViewByType",
+      "type": "function",
+      "description": "打开单元视图",
+      "module": "DFII_SKILL",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_dbSave",
+      "label": "dbSave",
+      "type": "function",
+      "description": "保存数据库",
+      "module": "DFII_SKILL",
+      "source_file": "SKILL"
+    },
+    {
+      "id": "func_dbCreateCell",
+      "label": "dbCreateCell",
+      "type": "function",
+      "description": "创建单元",
+      "module": "DFII_SKILL",
+      "source_file": "SKILL"
+    }
+  ],
+  "edges": [
+    {
+      "source": "module_Core_SKILL",
+      "target": "module_DFII_SKILL",
+      "relation": "foundation",
+      "description": "数据库操作依赖核心语言",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Core_SKILL",
+      "target": "module_Custom_Layout",
+      "relation": "foundation",
+      "description": "版图自动化依赖核心语言",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Core_SKILL",
+      "target": "module_User_Interface",
+      "relation": "foundation",
+      "description": "UI开发依赖核心语言",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Core_SKILL",
+      "target": "module_Schematics",
+      "relation": "foundation",
+      "description": "原理图依赖核心语言",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Core_SKILL",
+      "target": "module_Pcells",
+      "relation": "foundation",
+      "description": "Pcell依赖核心语言",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE-L",
+      "target": "module_ADE_Assembler",
+      "relation": "evolution",
+      "description": "ADE L 演进到 Maestro",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE-L",
+      "target": "module_ADE_XL",
+      "relation": "evolution",
+      "description": "ADE L 演进到 XL",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE_XL",
+      "target": "module_ADE_Assembler",
+      "relation": "evolution",
+      "description": "XL 演进到 Maestro",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_OCEAN",
+      "target": "module_OCEAN_XL",
+      "relation": "evolution",
+      "description": "OCEAN 演进到 XL",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE_Assembler",
+      "target": "module_OCEAN_XL",
+      "relation": "related",
+      "description": "Assembler 支持 OCEAN XL",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Custom_Layout",
+      "target": "module_Pcells",
+      "relation": "related",
+      "description": "版图与Pcell紧密相关",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Custom_Layout",
+      "target": "module_Tech_File",
+      "relation": "related",
+      "description": "版图依赖技术文件",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Schematics",
+      "target": "module_Netlisting_and_Simulation",
+      "relation": "related",
+      "description": "原理图到网表",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE-L",
+      "target": "module_OCEAN",
+      "relation": "related",
+      "description": "ADE L 支持 OCEAN",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ViVA_SKILL",
+      "target": "module_ADE-L",
+      "relation": "related",
+      "description": "波形查看器与仿真相关",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Custom_Constraints",
+      "target": "module_ADE_XL",
+      "relation": "related",
+      "description": "约束用于高级仿真",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_DFII_SKILL",
+      "target": "module_Netlisting_and_Simulation",
+      "relation": "related",
+      "description": "数据库与网表",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Translators",
+      "target": "module_Netlisting_and_Simulation",
+      "relation": "related",
+      "description": "格式转换",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Core_SKILL",
+      "target": "func_append",
+      "relation": "contains",
+      "description": "Core_SKILL 包含 append",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Core_SKILL",
+      "target": "func_car",
+      "relation": "contains",
+      "description": "Core_SKILL 包含 car",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Core_SKILL",
+      "target": "func_cdr",
+      "relation": "contains",
+      "description": "Core_SKILL 包含 cdr",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Core_SKILL",
+      "target": "func_cons",
+      "relation": "contains",
+      "description": "Core_SKILL 包含 cons",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Core_SKILL",
+      "target": "func_list",
+      "relation": "contains",
+      "description": "Core_SKILL 包含 list",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE_Assembler",
+      "target": "func_maeAddOutput",
+      "relation": "contains",
+      "description": "ADE_Assembler 包含 maeAddOutput",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE_Assembler",
+      "target": "func_maeCloseSession",
+      "relation": "contains",
+      "description": "ADE_Assembler 包含 maeCloseSession",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE_Assembler",
+      "target": "func_maeGetSetup",
+      "relation": "contains",
+      "description": "ADE_Assembler 包含 maeGetSetup",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE_Assembler",
+      "target": "func_maeSetVar",
+      "relation": "contains",
+      "description": "ADE_Assembler 包含 maeSetVar",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE_Assembler",
+      "target": "func_maeRunSimulation",
+      "relation": "contains",
+      "description": "ADE_Assembler 包含 maeRunSimulation",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE_XL",
+      "target": "func_axlAddOutput",
+      "relation": "contains",
+      "description": "ADE_XL 包含 axlAddOutput",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_ADE_XL",
+      "target": "func_axlRunSession",
+      "relation": "contains",
+      "description": "ADE_XL 包含 axlRunSession",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_OCEAN",
+      "target": "func_ocnAddOutput",
+      "relation": "contains",
+      "description": "OCEAN 包含 ocnAddOutput",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_OCEAN",
+      "target": "func_ocnRunSimulation",
+      "relation": "contains",
+      "description": "OCEAN 包含 ocnRunSimulation",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_OCEAN",
+      "target": "func_openResults",
+      "relation": "contains",
+      "description": "OCEAN 包含 openResults",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Custom_Layout",
+      "target": "func_dbCreateInst",
+      "relation": "contains",
+      "description": "Custom_Layout 包含 dbCreateInst",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Custom_Layout",
+      "target": "func_dbCreateRect",
+      "relation": "contains",
+      "description": "Custom_Layout 包含 dbCreateRect",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Custom_Layout",
+      "target": "func_dbCreatePath",
+      "relation": "contains",
+      "description": "Custom_Layout 包含 dbCreatePath",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Custom_Layout",
+      "target": "func_dbCreateLabel",
+      "relation": "contains",
+      "description": "Custom_Layout 包含 dbCreateLabel",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Custom_Layout",
+      "target": "func_leCreateLayer",
+      "relation": "contains",
+      "description": "Custom_Layout 包含 leCreateLayer",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Schematics",
+      "target": "func_schCreateInst",
+      "relation": "contains",
+      "description": "Schematics 包含 schCreateInst",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Schematics",
+      "target": "func_schCreateWire",
+      "relation": "contains",
+      "description": "Schematics 包含 schCreateWire",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Schematics",
+      "target": "func_schCreatePin",
+      "relation": "contains",
+      "description": "Schematics 包含 schCreatePin",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Pcells",
+      "target": "func_pcDefinePCell",
+      "relation": "contains",
+      "description": "Pcells 包含 pcDefinePCell",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_Pcells",
+      "target": "func_pcCellView",
+      "relation": "contains",
+      "description": "Pcells 包含 pcCellView",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_User_Interface",
+      "target": "func_hiCreateApp",
+      "relation": "contains",
+      "description": "User_Interface 包含 hiCreateApp",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_User_Interface",
+      "target": "func_hiCreateMenuItem",
+      "relation": "contains",
+      "description": "User_Interface 包含 hiCreateMenuItem",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_DFII_SKILL",
+      "target": "func_dbOpenCellViewByType",
+      "relation": "contains",
+      "description": "DFII_SKILL 包含 dbOpenCellViewByType",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_DFII_SKILL",
+      "target": "func_dbSave",
+      "relation": "contains",
+      "description": "DFII_SKILL 包含 dbSave",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "module_DFII_SKILL",
+      "target": "func_dbCreateCell",
+      "relation": "contains",
+      "description": "DFII_SKILL 包含 dbCreateCell",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "simulation_suite",
+      "label": "仿真工具套件",
+      "nodes": [
+        "module_ADE-L",
+        "module_ADE_XL",
+        "module_ADE_Assembler",
+        "module_OCEAN",
+        "module_OCEAN_XL"
+      ],
+      "relation": "form",
+      "description": "完整的仿真环境",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "design_entry",
+      "label": "设计输入工具",
+      "nodes": [
+        "module_Schematics",
+        "module_Custom_Layout",
+        "module_Pcells"
+      ],
+      "relation": "form",
+      "description": "原理图和版图设计",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "id": "core_tools",
+      "label": "核心工具",
+      "nodes": [
+        "module_Core_SKILL",
+        "module_DFII_SKILL",
+        "module_User_Interface"
+      ],
+      "relation": "form",
+      "description": "SKILL 核心功能",
+      "confidence": "EXTRACTED"
+    }
+  ],
+  "stats": {
+    "total_functions": 8169,
+    "total_modules": 27,
+    "key_functions": 30
+  }
+}
